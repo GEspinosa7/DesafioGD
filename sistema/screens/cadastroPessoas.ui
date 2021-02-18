@@ -41,9 +41,6 @@
     <item>
      <widget class="QLineEdit" name="lineEditSobrenome"/>
     </item>
-    <item>
-     <widget class="QLineEdit" name="lineEditCPF"/>
-    </item>
    </layout>
   </widget>
   <widget class="QPushButton" name="btnCadastrar">
@@ -87,16 +84,6 @@ font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="lblSobrenome">
       <property name="text">
        <string>Sobrenome:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="lblCPF">
-      <property name="text">
-       <string>CPF:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
