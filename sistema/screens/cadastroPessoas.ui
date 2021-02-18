@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>20</y>
+     <y>10</y>
      <width>431</width>
      <height>161</height>
     </rect>
@@ -66,7 +66,7 @@ font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
      <x>70</x>
      <y>20</y>
      <width>111</width>
-     <height>161</height>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -76,7 +76,7 @@ font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
        <string>Nome:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -86,7 +86,7 @@ font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
        <string>Sobrenome:</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>

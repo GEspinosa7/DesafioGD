@@ -6,21 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>706</width>
     <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>500</width>
+    <width>706</width>
     <height>800</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>500</width>
+    <width>706</width>
     <height>1200</height>
    </size>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -28,9 +31,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>-4</x>
-     <y>-8</y>
-     <width>711</width>
+     <x>10</x>
+     <y>0</y>
+     <width>681</width>
      <height>71</height>
     </rect>
    </property>
@@ -48,26 +51,93 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>1</x>
+     <x>110</x>
      <y>70</y>
-     <width>521</width>
-     <height>711</height>
+     <width>501</width>
+     <height>631</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(239, 233, 156);</string>
    </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAsNeeded</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
    <property name="rowCount">
     <number>0</number>
    </property>
    <property name="columnCount">
-    <number>5</number>
+    <number>10</number>
    </property>
+   <column>
+    <property name="text">
+     <string>ID</string>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Nome</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Sobrenome</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Sala</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Sala de Café</string>
+    </property>
+   </column>
    <column/>
    <column/>
    <column/>
    <column/>
    <column/>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>109</x>
+     <y>710</y>
+     <width>501</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="btnDeletar">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Deletar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

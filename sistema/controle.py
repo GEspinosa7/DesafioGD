@@ -31,6 +31,7 @@ def cadastrar_pessoa():
 def call_cadastro_pessoa():
     cadastro_pessoas.show()
 
+
 def call_lista_pessoas():
     lista_pessoas.show()
 
@@ -47,6 +48,18 @@ def call_lista_pessoas():
             lista_pessoas.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
 
 
+def deletar_pessoa():
+    line = lista_pessoas.tableWidget.currentRow()
+    lista_pessoas.tableWidget.removeRow(line)
+
+    cursor = db.cursor()
+    cursor.execute("SELECT id FROM pessoas")
+    rdata = cursor.fetchall()
+    id = rdata[line][0]
+    cursor.execute("DELETE FROM pessoas WHERE id=" + str(id))
+
+    print(line)
+
 
 app = QtWidgets.QApplication([])
 
@@ -59,6 +72,7 @@ lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
 mainScreen.pessoasBtnCadastrar.clicked.connect(call_cadastro_pessoa)
 mainScreen.pessoasBtnConsultar.clicked.connect(call_lista_pessoas)
 cadastro_pessoas.btnCadastrar.clicked.connect(cadastrar_pessoa)
+lista_pessoas.btnDeletar.clicked.connect(deletar_pessoa)
 
 # MOSTRA MAIN SCREEN
 mainScreen.show()
