@@ -87,20 +87,11 @@ def editar_pessoa():
 app = QtWidgets.QApplication([])
 
 # CARREGA SCREENS
-mainScreen = uic.loadUi("sistema/screens/main.ui")
 cadastro_pessoas = uic.loadUi("sistema/screens/cadastroPessoas.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
 alterar_dados_pessoa = uic.loadUi("sistema/screens/alterarDadosPessoa.ui")
 
 # EVENT LISTENER
-mainScreen.pessoasBtnCadastrar.clicked.connect(call_cadastro_pessoa)
-mainScreen.pessoasBtnConsultar.clicked.connect(call_lista_pessoas)
 cadastro_pessoas.btnCadastrar.clicked.connect(cadastrar_pessoa)
 lista_pessoas.btnDeletar.clicked.connect(deletar_pessoa)
 lista_pessoas.btnEditar.clicked.connect(editar_pessoa)
-
-# MOSTRA MAIN SCREEN
-mainScreen.show()
-
-# EXECUTA O APP
-app.exec()
