@@ -1,5 +1,6 @@
 from PyQt5 import uic,QtWidgets
 import mysql.connector
+from functools import partial
 
 
 #BANCO DE DADOS
@@ -14,9 +15,6 @@ def cadastrar_pessoa():
     nome = cadastro_pessoas.lineEditNome.text()
     sobrenome = cadastro_pessoas.lineEditSobrenome.text()
 
-    print("Nome: ", nome)
-    print("Sobrenome: ", sobrenome)
-
     #SALVANDO DADOS NO BANCO DE DADOS
     cursor = db.cursor()
     sql = "INSERT INTO pessoas (nome, sobrenome) VALUES (%s,%s)"
@@ -27,10 +25,8 @@ def cadastrar_pessoa():
     cadastro_pessoas.close()
 
 
-
 def call_cadastro_pessoa():
     cadastro_pessoas.show()
-
 
 def call_lista_pessoas():
     lista_pessoas.show()
@@ -57,8 +53,35 @@ def deletar_pessoa():
     rdata = cursor.fetchall()
     id = rdata[line][0]
     cursor.execute("DELETE FROM pessoas WHERE id=" + str(id))
+    db.commit()
 
-    print(line)
+def update(id):
+    nome = alterar_dados_pessoa.lineEditNome.text()
+    sobrenome = alterar_dados_pessoa.lineEditSobrenome.text()
+
+    #AUALIZANDO OS DADOS NO BANCO DE DADOS
+    cursor = db.cursor()
+    sql = "UPDATE pessoas SET nome = %s, sobrenome = %s WHERE id = %s"
+    data = (str(nome), str(sobrenome), str(id))
+    cursor.execute(sql, data)
+    db.commit()
+    alterar_dados_pessoa.close()
+
+def editar_pessoa():
+    line = lista_pessoas.tableWidget.currentRow()
+    cursor = db.cursor()
+    cursor.execute("SELECT id FROM pessoas")
+    rdata = cursor.fetchall()
+    id = rdata[line][0]
+    cursor.execute("SELECT nome, sobrenome FROM pessoas WHERE id=" + str(id))
+    pessoa = cursor.fetchall()
+
+    alterar_dados_pessoa.show()
+
+    alterar_dados_pessoa.lblNome_disabled.setText(str(pessoa[0][0]))
+    alterar_dados_pessoa.lblSobrenome_disabled.setText(str(pessoa[0][1]))
+
+    alterar_dados_pessoa.btnSalvarAlteracao.clicked.connect(partial(update, id))
 
 
 app = QtWidgets.QApplication([])
@@ -67,12 +90,14 @@ app = QtWidgets.QApplication([])
 mainScreen = uic.loadUi("sistema/screens/main.ui")
 cadastro_pessoas = uic.loadUi("sistema/screens/cadastroPessoas.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
+alterar_dados_pessoa = uic.loadUi("sistema/screens/alterarDadosPessoa.ui")
 
 # EVENT LISTENER
 mainScreen.pessoasBtnCadastrar.clicked.connect(call_cadastro_pessoa)
 mainScreen.pessoasBtnConsultar.clicked.connect(call_lista_pessoas)
 cadastro_pessoas.btnCadastrar.clicked.connect(cadastrar_pessoa)
 lista_pessoas.btnDeletar.clicked.connect(deletar_pessoa)
+lista_pessoas.btnEditar.clicked.connect(editar_pessoa)
 
 # MOSTRA MAIN SCREEN
 mainScreen.show()
