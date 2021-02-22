@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="rooms">
+    <file>rooms.png</file>
+  </qresource>
+</RCC>

@@ -8,12 +8,13 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     passwd="CHL8xXHp5AfZC8AV",
-    database="desafio_gd"
+    database="desafio"
 )
 
 def cadastrar_pessoa():
     nome = cadastro_pessoas.lineEditNome.text()
     sobrenome = cadastro_pessoas.lineEditSobrenome.text()
+    
 
     #SALVANDO DADOS NO BANCO DE DADOS
     cursor = db.cursor()
@@ -26,7 +27,23 @@ def cadastrar_pessoa():
 
 
 def call_cadastro_pessoa():
+    # call_lista_salas()
     cadastro_pessoas.show()
+
+
+def call_lista_salas():
+
+    cursor = db.cursor()
+    sql = "SELECT * FROM salas"
+    cursor.execute(sql)
+    rdata = cursor.fetchall()
+
+    cadastro_pessoas.tableWidget.setItem(len(rdata))
+    cadastro_pessoas.tableWidget.setColumnCount()
+
+    for i in range(0, len(rdata)):
+        for j in range(0, 4):
+            cadastro_pessoas.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
 
 def call_lista_pessoas():
     lista_pessoas.show()
@@ -37,10 +54,10 @@ def call_lista_pessoas():
     rdata = cursor.fetchall()
 
     lista_pessoas.tableWidget.setRowCount(len(rdata))
-    lista_pessoas.tableWidget.setColumnCount(3)
+    lista_pessoas.tableWidget.setColumnCount(5)
 
     for i in range(0, len(rdata)):
-        for j in range(0, 3):
+        for j in range(0, 5):
             lista_pessoas.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
 
 
@@ -49,10 +66,10 @@ def deletar_pessoa():
     lista_pessoas.tableWidget.removeRow(line)
 
     cursor = db.cursor()
-    cursor.execute("SELECT id FROM pessoas")
+    cursor.execute("SELECT idPessoa FROM pessoas")
     rdata = cursor.fetchall()
     id = rdata[line][0]
-    cursor.execute("DELETE FROM pessoas WHERE id=" + str(id))
+    cursor.execute("DELETE FROM pessoas WHERE idPessoa=" + str(id))
     db.commit()
 
 def update(id):
@@ -61,7 +78,7 @@ def update(id):
 
     #AUALIZANDO OS DADOS NO BANCO DE DADOS
     cursor = db.cursor()
-    sql = "UPDATE pessoas SET nome = %s, sobrenome = %s WHERE id = %s"
+    sql = "UPDATE pessoas SET nome = %s, sobrenome = %s WHERE idPessoa = %s"
     data = (str(nome), str(sobrenome), str(id))
     cursor.execute(sql, data)
     db.commit()
@@ -70,10 +87,10 @@ def update(id):
 def editar_pessoa():
     line = lista_pessoas.tableWidget.currentRow()
     cursor = db.cursor()
-    cursor.execute("SELECT id FROM pessoas")
+    cursor.execute("SELECT idPessoa FROM pessoas")
     rdata = cursor.fetchall()
     id = rdata[line][0]
-    cursor.execute("SELECT nome, sobrenome FROM pessoas WHERE id=" + str(id))
+    cursor.execute("SELECT nome, sobrenome FROM pessoas WHERE idPessoa=" + str(id))
     pessoa = cursor.fetchall()
 
     alterar_dados_pessoa.show()

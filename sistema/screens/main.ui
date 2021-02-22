@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>477</height>
+    <width>1180</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>706</width>
-    <height>477</height>
+    <width>1180</width>
+    <height>47711</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,8 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(229, 229, 229);</string>
+   <string notr="true">background-color: rgb(229, 229, 229);
+font: 87 15pt &quot;Arial&quot;;</string>
   </property>
   <property name="iconSize">
    <size>
@@ -45,152 +46,320 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QWidget" name="gridLayoutWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>39</x>
-      <y>29</y>
-      <width>631</width>
-      <height>391</height>
+      <x>10</x>
+      <y>10</y>
+      <width>1161</width>
+      <height>591</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <property name="leftMargin">
       <number>100</number>
      </property>
      <property name="topMargin">
-      <number>20</number>
+      <number>0</number>
      </property>
      <property name="rightMargin">
       <number>100</number>
      </property>
      <property name="bottomMargin">
-      <number>10</number>
+      <number>20</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QGroupBox" name="groupBoxSalas">
+     <item>
+      <widget class="QTabWidget" name="tabWidget">
        <property name="styleSheet">
-        <string notr="true">font: 75 9pt &quot;MS Shell Dlg 2&quot;;
-</string>
+        <string notr="true"/>
        </property>
-       <property name="title">
-        <string>Salas</string>
+       <property name="currentIndex">
+        <number>0</number>
        </property>
-       <widget class="QWidget" name="horizontalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>411</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QPushButton" name="salasBtnCadastrar">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(103, 154, 0);</string>
-           </property>
-           <property name="text">
-            <string>Cadastrar</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="salasBtnConsultar">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(170, 170, 255);</string>
-           </property>
-           <property name="text">
-            <string>Consultar</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <widget class="QWidget" name="tab_4">
+        <attribute name="title">
+         <string>Salas</string>
+        </attribute>
+        <widget class="QWidget" name="horizontalLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>9</x>
+           <y>9</y>
+           <width>1033</width>
+           <height>567</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>110</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>250</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Salas</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="leftMargin">
+               <number>50</number>
+              </property>
+              <property name="rightMargin">
+               <number>50</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="salasBtnCadastrar_2">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(120, 215, 168);</string>
+                </property>
+                <property name="text">
+                 <string>Cadastrar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="salasBtnConsultar_2">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(121, 158, 229);</string>
+                </property>
+                <property name="text">
+                 <string>Consultar</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>500</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../images/rooms.qrc">:/rooms/rooms.png</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QGroupBox" name="groupBoxSalasCafe">
-       <property name="styleSheet">
-        <string notr="true">font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
-       </property>
-       <property name="title">
-        <string>Salas de Café</string>
-       </property>
-       <widget class="QWidget" name="horizontalLayoutWidget_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>19</y>
-          <width>411</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QPushButton" name="salasCafeBtnCadastrar">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(103, 154, 0);</string>
-           </property>
-           <property name="text">
-            <string>Cadastrar</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="salasCafeBtnConsultar">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(170, 170, 255);</string>
-           </property>
-           <property name="text">
-            <string>Consultar</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <widget class="QWidget" name="tab_5">
+        <attribute name="title">
+         <string>Salas de Café</string>
+        </attribute>
+        <widget class="QWidget" name="horizontalLayoutWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>931</width>
+           <height>514</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>200</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>Salas de Café</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_15">
+              <property name="leftMargin">
+               <number>50</number>
+              </property>
+              <property name="rightMargin">
+               <number>50</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="salasCafeBtnCadastrar_2">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(226, 120, 14);</string>
+                </property>
+                <property name="text">
+                 <string>Cadastrar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="salasCafeBtnConsultar_2">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(254, 230, 204);</string>
+                </property>
+                <property name="text">
+                 <string>Consultar</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../images/coffee.qrc">:/coffe/coffee.png</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QGroupBox" name="groupBoxPessoas">
-       <property name="styleSheet">
-        <string notr="true">font: 75 9pt &quot;MS Shell Dlg 2&quot;;</string>
-       </property>
-       <property name="title">
-        <string>Pessoas</string>
-       </property>
-       <widget class="QWidget" name="horizontalLayoutWidget_3">
-        <property name="geometry">
-         <rect>
-          <x>9</x>
-          <y>20</y>
-          <width>411</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QPushButton" name="pessoasBtnCadastrar">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(103, 154, 0);</string>
-           </property>
-           <property name="text">
-            <string>Cadastrar</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pessoasBtnConsultar">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(170, 170, 255);</string>
-           </property>
-           <property name="text">
-            <string>Consultar</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <widget class="QWidget" name="tab_6">
+        <attribute name="title">
+         <string>Pessoas</string>
+        </attribute>
+        <widget class="QWidget" name="horizontalLayoutWidget_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>931</width>
+           <height>514</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>200</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_17">
+              <item>
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>Pessoas</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_18">
+              <property name="leftMargin">
+               <number>50</number>
+              </property>
+              <property name="rightMargin">
+               <number>50</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="pessoasBtnCadastrar_3">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 80, 125);</string>
+                </property>
+                <property name="text">
+                 <string>Cadastrar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pessoasBtnConsultar_3">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(240, 192, 135);</string>
+                </property>
+                <property name="text">
+                 <string>Consultar</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../../images/people.qrc">:/people/people.png</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </widget>
      </item>
@@ -229,6 +398,10 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../images/coffee.qrc"/>
+  <include location="../../images/people.qrc"/>
+  <include location="../../images/rooms.qrc"/>
+ </resources>
  <connections/>
 </ui>
