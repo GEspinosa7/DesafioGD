@@ -48,13 +48,39 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>100</x>
+     <x>0</x>
      <y>500</y>
-     <width>501</width>
+     <width>701</width>
      <height>80</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="btnDetalhes">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 127);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Detalhes</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QPushButton" name="btnEditar">
       <property name="minimumSize">
@@ -113,9 +139,9 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>60</y>
-     <width>401</width>
+     <x>200</x>
+     <y>70</y>
+     <width>301</width>
      <height>400</height>
     </rect>
    </property>
@@ -150,6 +176,9 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    <property name="selectionMode">
     <enum>QAbstractItemView::NoSelection</enum>
    </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideMiddle</enum>
+   </property>
    <property name="gridStyle">
     <enum>Qt::DashDotDotLine</enum>
    </property>
@@ -157,7 +186,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
     <number>0</number>
    </property>
    <property name="columnCount">
-    <number>9</number>
+    <number>3</number>
    </property>
    <column>
     <property name="text">
@@ -179,16 +208,6 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Capacidade</string>
     </property>
    </column>
-   <column>
-    <property name="text">
-     <string>Pessoas</string>
-    </property>
-   </column>
-   <column/>
-   <column/>
-   <column/>
-   <column/>
-   <column/>
   </widget>
  </widget>
  <resources/>

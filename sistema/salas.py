@@ -37,7 +37,7 @@ def call_lista_salas():
     rdata = cursor.fetchall()
 
     lista_salas.tableWidget.setRowCount(len(rdata))
-    lista_salas.tableWidget.setColumnCount(3)
+    lista_salas.tableWidget.setColumnCount(4)
 
     for i in range(0, len(rdata)):
         for j in range(0, 3):
@@ -83,6 +83,9 @@ def editar_sala():
 
     alterar_dados_sala.btnSalvarAlteracao.clicked.connect(partial(update, id))
 
+def call_sala_detalhada():
+    sala_detalhada.show()
+
 
 app = QtWidgets.QApplication([])
 
@@ -91,8 +94,10 @@ app = QtWidgets.QApplication([])
 cadastro_salas = uic.loadUi("sistema/screens/cadastroSalas.ui")
 lista_salas = uic.loadUi("sistema/screens/listaSalas.ui")
 alterar_dados_sala = uic.loadUi("sistema/screens/alterarDadosSala.ui")
+sala_detalhada = uic.loadUi("sistema/screens/salaDetalhada.ui")
 
 # EVENT LISTENER
 cadastro_salas.btnCadastrar.clicked.connect(cadastrar_sala)
 lista_salas.btnDeletar.clicked.connect(deletar_sala)
 lista_salas.btnEditar.clicked.connect(editar_sala)
+lista_salas.btnDetalhes.clicked.connect(call_sala_detalhada)

@@ -11,15 +11,41 @@ db = mysql.connector.connect(
     database="desafio"
 )
 
+    # line = lista_pessoas.tableWidget.currentRow()
+    # cursor = db.cursor()
+    # cursor.execute("SELECT idPessoa FROM pessoas")
+    # rdata = cursor.fetchall()
+    # id = rdata[line][0]
+    # cursor.execute("SELECT nome, sobrenome FROM pessoas WHERE idPessoa=" + str(id))
+    # pessoa = cursor.fetchall()
+
+    # alterar_dados_pessoa.show()
+
+    # alterar_dados_pessoa.lblNome_disabled.setText(str(pessoa[0][0]))
+    # alterar_dados_pessoa.lblSobrenome_disabled.setText(str(pessoa[0][1]))
+
+    # alterar_dados_pessoa.btnSalvarAlteracao.clicked.connect(partial(update, id))
+
 def cadastrar_pessoa():
     nome = cadastro_pessoas.lineEditNome.text()
     sobrenome = cadastro_pessoas.lineEditSobrenome.text()
-    
+    line_sala = cadastro_pessoas.tableWidget_sala.currentRow()
+    line_sala_cafe = cadastro_pessoas.tableWidget_cafe.currentRow()
 
     #SALVANDO DADOS NO BANCO DE DADOS
     cursor = db.cursor()
-    sql = "INSERT INTO pessoas (nome, sobrenome) VALUES (%s,%s)"
-    data = (str(nome), str(sobrenome))
+    
+    cursor.execute("SELECT idSala FROM salas")
+    s_data = cursor.fetchall()
+
+    cursor.execute("SELECT idCafe FROM cafes")
+    sc_data = cursor.fetchall()
+
+    id_sala = s_data[line_sala][0]
+    id_sala_cafe = sc_data[line_sala_cafe][0] 
+
+    sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
+    data = (str(nome), str(sobrenome), str(id_sala), str(id_sala_cafe))
     cursor.execute(sql,data)
     db.commit()
 
@@ -27,23 +53,37 @@ def cadastrar_pessoa():
 
 
 def call_cadastro_pessoa():
-    # call_lista_salas()
+    call_lista_salas()
+    call_lista_salas_cafe()
     cadastro_pessoas.show()
 
 
 def call_lista_salas():
-
     cursor = db.cursor()
     sql = "SELECT * FROM salas"
     cursor.execute(sql)
     rdata = cursor.fetchall()
 
-    cadastro_pessoas.tableWidget.setItem(len(rdata))
-    cadastro_pessoas.tableWidget.setColumnCount()
+    cadastro_pessoas.tableWidget_sala.setRowCount(len(rdata))
+    cadastro_pessoas.tableWidget_sala.setColumnCount(3)
+
 
     for i in range(0, len(rdata)):
-        for j in range(0, 4):
-            cadastro_pessoas.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
+        for j in range(0, 3):
+            cadastro_pessoas.tableWidget_sala.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
+
+def call_lista_salas_cafe():
+    cursor = db.cursor()
+    sql = "SELECT * FROM cafes"
+    cursor.execute(sql)
+    rdata = cursor.fetchall()
+
+    cadastro_pessoas.tableWidget_cafe.setRowCount(len(rdata))
+    cadastro_pessoas.tableWidget_cafe.setColumnCount(3)
+
+    for i in range(0, len(rdata)):
+        for j in range(0, 3):
+            cadastro_pessoas.tableWidget_cafe.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
 
 def call_lista_pessoas():
     lista_pessoas.show()
