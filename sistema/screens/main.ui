@@ -168,7 +168,7 @@ font: 87 15pt &quot;Arial&quot;;</string>
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../../images/rooms.qrc">:/rooms/rooms.png</pixmap>
+             <pixmap resource="../../images/images.qrc">:/rooms/rooms.png</pixmap>
             </property>
            </widget>
           </item>
@@ -261,7 +261,7 @@ font: 87 15pt &quot;Arial&quot;;</string>
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../../images/coffee.qrc">:/coffe/coffee.png</pixmap>
+             <pixmap resource="../../images/images.qrc">:/coffee/coffee.png</pixmap>
             </property>
            </widget>
           </item>
@@ -354,7 +354,7 @@ font: 87 15pt &quot;Arial&quot;;</string>
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../../images/people.qrc">:/people/people.png</pixmap>
+             <pixmap resource="../../images/images.qrc">:/people/people.png</pixmap>
             </property>
            </widget>
           </item>
@@ -399,9 +399,7 @@ font: 87 15pt &quot;Arial&quot;;</string>
   </action>
  </widget>
  <resources>
-  <include location="../../images/coffee.qrc"/>
-  <include location="../../images/people.qrc"/>
-  <include location="../../images/rooms.qrc"/>
+  <include location="../../images/images.qrc"/>
  </resources>
  <connections/>
 </ui>

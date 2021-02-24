@@ -26,7 +26,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 170, 255);</string>
+   <string notr="true">background-color: rgb(120, 215, 168);</string>
   </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
@@ -89,7 +89,7 @@
          <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
         <property name="text">
-         <string>Numero da Sala</string>
+         <string>Nome da Sala:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -97,12 +97,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBoxNumero">
+       <widget class="QLineEdit" name="lineEditNome">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="maximum">
-         <number>999</number>
         </property>
        </widget>
       </item>
@@ -181,7 +178,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">font: 75 11pt &quot;MS Shell Dlg 2&quot;;
-background-color: rgb(0, 170, 0);
+background-color: rgb(121, 158, 229);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">

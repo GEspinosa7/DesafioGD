@@ -76,10 +76,10 @@ color: rgb(255, 255, 255);</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <property name="leftMargin">
-     <number>150</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>150</number>
+     <number>0</number>
     </property>
     <item>
      <widget class="QLabel" name="lblNumero_3">
@@ -87,17 +87,20 @@ color: rgb(255, 255, 255);</string>
        <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>Numero da Sala:</string>
+       <string>Nome da Sala:</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="lblNumero_disabled">
+     <widget class="QLabel" name="lblNome_disabled">
       <property name="styleSheet">
        <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -109,6 +112,9 @@ color: rgb(255, 255, 255);</string>
       <property name="text">
        <string>Capacidade:</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
     </item>
     <item>
@@ -118,6 +124,9 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -159,7 +168,7 @@ color: rgb(255, 255, 255);</string>
          <string notr="true">font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
         <property name="text">
-         <string>Numero da Sala:</string>
+         <string>Nome da Sala:</string>
         </property>
        </widget>
       </item>
@@ -181,25 +190,16 @@ color: rgb(255, 255, 255);</string>
        <number>30</number>
       </property>
       <property name="rightMargin">
-       <number>30</number>
+       <number>7</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
-       <widget class="QSpinBox" name="spinBoxNumero">
+       <widget class="QLineEdit" name="lineEditNome">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
-        </property>
-        <property name="minimum">
-         <number>0</number>
-        </property>
-        <property name="maximum">
-         <number>999</number>
-        </property>
-        <property name="displayIntegerBase">
-         <number>10</number>
         </property>
        </widget>
       </item>

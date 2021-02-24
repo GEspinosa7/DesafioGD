@@ -73,7 +73,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 127);
+       <string notr="true">background-color: rgb(121, 158, 229);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
@@ -139,9 +139,9 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>160</x>
      <y>70</y>
-     <width>301</width>
+     <width>361</width>
      <height>400</height>
     </rect>
    </property>
@@ -161,7 +161,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(85, 170, 255);
+    <string notr="true">background-color: rgb(120, 215, 168);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="verticalScrollBarPolicy">
@@ -170,11 +170,17 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
+   <property name="dragDropOverwriteMode">
+    <bool>false</bool>
+   </property>
    <property name="alternatingRowColors">
     <bool>true</bool>
    </property>
    <property name="selectionMode">
-    <enum>QAbstractItemView::NoSelection</enum>
+    <enum>QAbstractItemView::ExtendedSelection</enum>
    </property>
    <property name="textElideMode">
     <enum>Qt::ElideMiddle</enum>
@@ -188,6 +194,9 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    <property name="columnCount">
     <number>3</number>
    </property>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
    <column>
     <property name="text">
      <string>ID</string>
@@ -197,15 +206,24 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
       <pointsize>10</pointsize>
      </font>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Numero</string>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
     <property name="text">
      <string>Capacidade</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Nome</string>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
     </property>
    </column>
   </widget>

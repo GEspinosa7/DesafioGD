@@ -91,7 +91,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
-         <string>Numero da Sala</string>
+         <string>Nome da Sala</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -99,12 +99,9 @@ color: rgb(255, 255, 255);</string>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBoxNumero">
+       <widget class="QLineEdit" name="lineEditNome">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="maximum">
-         <number>999</number>
         </property>
        </widget>
       </item>

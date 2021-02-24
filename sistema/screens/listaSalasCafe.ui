@@ -39,6 +39,32 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
+     <widget class="QPushButton" name="btnDetalhes">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(254, 230, 204);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Detalhes</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="btnEditar">
       <property name="minimumSize">
        <size>
@@ -98,7 +124,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
     <rect>
      <x>160</x>
      <y>70</y>
-     <width>401</width>
+     <width>371</width>
      <height>400</height>
     </rect>
    </property>
@@ -118,7 +144,7 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(170, 85, 0);
+    <string notr="true">background-color: rgb(226, 120, 14);
 font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="verticalScrollBarPolicy">
@@ -127,11 +153,14 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
    <property name="alternatingRowColors">
     <bool>true</bool>
    </property>
    <property name="selectionMode">
-    <enum>QAbstractItemView::NoSelection</enum>
+    <enum>QAbstractItemView::ExtendedSelection</enum>
    </property>
    <property name="textElideMode">
     <enum>Qt::ElideMiddle</enum>
@@ -143,8 +172,11 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
     <number>0</number>
    </property>
    <property name="columnCount">
-    <number>9</number>
+    <number>3</number>
    </property>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
    <column>
     <property name="text">
      <string>ID</string>
@@ -157,24 +189,14 @@ font: 75 10pt &quot;MS Shell Dlg 2&quot;;</string>
    </column>
    <column>
     <property name="text">
-     <string>Numero</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
      <string>Capacidade</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Pessoas</string>
+     <string>Nome</string>
     </property>
    </column>
-   <column/>
-   <column/>
-   <column/>
-   <column/>
-   <column/>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">

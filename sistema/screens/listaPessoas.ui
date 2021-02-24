@@ -51,9 +51,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>80</x>
      <y>70</y>
-     <width>501</width>
+     <width>541</width>
      <height>400</height>
     </rect>
    </property>
@@ -81,8 +81,17 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustToContents</enum>
+   </property>
    <property name="alternatingRowColors">
     <bool>true</bool>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::ExtendedSelection</enum>
+   </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideMiddle</enum>
    </property>
    <property name="gridStyle">
     <enum>Qt::DashDotDotLine</enum>
@@ -91,8 +100,11 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     <number>0</number>
    </property>
    <property name="columnCount">
-    <number>10</number>
+    <number>5</number>
    </property>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
    <column>
     <property name="text">
      <string>ID</string>
@@ -123,11 +135,6 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>IDSala Café</string>
     </property>
    </column>
-   <column/>
-   <column/>
-   <column/>
-   <column/>
-   <column/>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
