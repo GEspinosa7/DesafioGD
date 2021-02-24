@@ -3,7 +3,8 @@ from pessoa import  call_cadastro_pessoa, call_lista_pessoas
 from salas import call_lista_salas, call_cadastro_sala
 from salas_cafe import call_lista_salas_cafe, call_cadastro_sala_cafe
 
-import rooms,people,coffee
+import images
+
 
 app = QtWidgets.QApplication([])
 

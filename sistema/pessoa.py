@@ -11,20 +11,8 @@ db = mysql.connector.connect(
     database="desafio"
 )
 
-    # line = lista_pessoas.tableWidget.currentRow()
-    # cursor = db.cursor()
-    # cursor.execute("SELECT idPessoa FROM pessoas")
-    # rdata = cursor.fetchall()
-    # id = rdata[line][0]
-    # cursor.execute("SELECT nome, sobrenome FROM pessoas WHERE idPessoa=" + str(id))
-    # pessoa = cursor.fetchall()
-
-    # alterar_dados_pessoa.show()
-
-    # alterar_dados_pessoa.lblNome_disabled.setText(str(pessoa[0][0]))
-    # alterar_dados_pessoa.lblSobrenome_disabled.setText(str(pessoa[0][1]))
-
-    # alterar_dados_pessoa.btnSalvarAlteracao.clicked.connect(partial(update, id))
+def close():
+    alerta_sala_cheia.close()
 
 def cadastrar_pessoa():
     nome = cadastro_pessoas.lineEditNome.text()
@@ -32,24 +20,52 @@ def cadastrar_pessoa():
     line_sala = cadastro_pessoas.tableWidget_sala.currentRow()
     line_sala_cafe = cadastro_pessoas.tableWidget_cafe.currentRow()
 
-    #SALVANDO DADOS NO BANCO DE DADOS
     cursor = db.cursor()
     
-    cursor.execute("SELECT idSala FROM salas")
+    cursor.execute("SELECT idSala, capacidade FROM salas")
     s_data = cursor.fetchall()
 
-    cursor.execute("SELECT idCafe FROM cafes")
-    sc_data = cursor.fetchall()
-
     id_sala = s_data[line_sala][0]
-    id_sala_cafe = sc_data[line_sala_cafe][0] 
+    capacidade_sala = s_data[line_sala][1]
 
-    sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
-    data = (str(nome), str(sobrenome), str(id_sala), str(id_sala_cafe))
-    cursor.execute(sql,data)
-    db.commit()
+    cursor.execute("SELECT idPessoa  FROM pessoas p INNER JOIN salas s ON p.idSala = s.idSala WHERE s.idSala = " + str(id_sala))
+    s_sala_qtd = cursor.fetchall()
+    qtd_sala = len(s_sala_qtd)
 
-    cadastro_pessoas.close()
+    if (qtd_sala >= capacidade_sala):
+       alerta_sala_cheia.show()
+
+    else:
+        sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
+        data = (str(nome), str(sobrenome), str(id_sala), 2)
+        cursor.execute(sql,data)
+        db.commit()
+        cadastro_pessoas.close()
+
+    # cursor.execute("SELECT idCafe, capacidade FROM cafes")
+    # sc_data = cursor.fetchall()
+
+    # id_cafe = sc_data[line_sala_cafe][0]
+    # capacidade_cafe = sc_data[line_sala_cafe][1]
+
+    # cursor.execute("SELECT * FROM pessoas p INNER JOIN cafes c ON p.idCafe = c.idCafe WHERE c.idCafe = " + str(id))
+    # rdata = cursor.fetchall()
+    # qtd_cafe = len(rdata)
+
+    # if (qtd_cafe >= capacidade_cafe):
+    #     print('nao pode')
+    # else:
+    #     print('pode')
+
+    # sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
+    # data = (str(nome), str(sobrenome), str(id_sala), str(id_cafe))
+    # cursor.execute(sql,data)
+    # db.commit()
+
+
+    # print("Sala id: "+str(id_sala)+  "capacidade: "+str(capacidade_sala)+ " quantidade:" + str(qtd_sala))
+    # print("Sala Cafe id: "+str(id_cafe)+  "capacidade: "+str(capacidade_cafe)+ " quantidade:" + str(qtd_cafe))
+    # cadastro_pessoas.close()
 
 
 def call_cadastro_pessoa():
@@ -147,8 +163,10 @@ app = QtWidgets.QApplication([])
 cadastro_pessoas = uic.loadUi("sistema/screens/cadastroPessoas.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
 alterar_dados_pessoa = uic.loadUi("sistema/screens/alterarDadosPessoa.ui")
+alerta_sala_cheia = uic.loadUi("sistema/screens/alertaSalaCheia.ui")
 
 # EVENT LISTENER
 cadastro_pessoas.btnCadastrar.clicked.connect(cadastrar_pessoa)
 lista_pessoas.btnDeletar.clicked.connect(deletar_pessoa)
 lista_pessoas.btnEditar.clicked.connect(editar_pessoa)
+alerta_sala_cheia.btnOk.clicked.connect(close)
