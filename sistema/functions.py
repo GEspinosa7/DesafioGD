@@ -9,28 +9,38 @@ db = mysql.connector.connect(
     database="desafio"
 )
 
-alerta_cadastro = uic.loadUi("sistema/screens/alertaCadastro.ui")
+alerta_padrao = uic.loadUi("sistema/screens/alertaPadrao.ui")
+alerta_sucesso = uic.loadUi("sistema/screens/alertaSucesso.ui")
 
 def close(ui):
     ui.close()
 
-def call_alerta_cadastro(label):
-    alerta_cadastro.show()
-    alerta_cadastro.lblAlerta.setText(label)
-    alerta_cadastro.btnOk.clicked.connect(partial(close, alerta_cadastro))
+def call_alerta_padrao(label):
+    alerta_padrao.show()
+    alerta_padrao.lblAlerta.setText(label)
+    alerta_padrao.btnOk.clicked.connect(partial(close, alerta_padrao))
 
-def tratamento_sala(nome, capacidade, ui, tabela):
+def call_alerta_sucesso(label):
+    alerta_sucesso.show()
+    alerta_sucesso.lblAlerta.setText(label)
+    alerta_sucesso.btnOk.clicked.connect(partial(close, alerta_sucesso))
+
+
+def cadastrar_sala(ui, tabela):
+    nome = ui.lineEditNome.text()
+    capacidade = ui.spinBoxCapacidade.text()
+
     erro_nome = "A sala precisa de um nome!"
     erro_capacidade = "A sala precisa de um mínimo de capacidade de pessoas"
     erro_ambos = "A sala está sem nome e sem uma capacidade mínima definidas"
 
     if ((not nome.strip()) and (int(capacidade) == 0)):
-        call_alerta_cadastro(erro_ambos)
+        call_alerta_padrao(erro_ambos)
     elif ((not nome.strip()) and (int(capacidade) > 0)):
-        call_alerta_cadastro(erro_nome)
+        call_alerta_padrao(erro_nome)
     elif int(capacidade) == 0:
-        call_alerta_cadastro(erro_capacidade)
-    else:  
+        call_alerta_padrao(erro_capacidade)
+    else:
         cursor = db.cursor()
         sql = "INSERT INTO " + tabela + " (nome, capacidade) VALUES (%s,%s)"
         data = (str(nome), str(capacidade))
@@ -38,29 +48,58 @@ def tratamento_sala(nome, capacidade, ui, tabela):
         db.commit()
         ui.close()
 
+
 def deletar_sala(ui, tabela, id_tabela):
+
     line = ui.tableWidget.currentRow()
-    ui.tableWidget.removeRow(line)
 
     cursor = db.cursor()
-    cursor.execute("SELECT " + id_tabela +" FROM " + tabela)
-    rdata = cursor.fetchall()
-    id_salvo = rdata[line][0]
 
-    cursor.execute("DELETE FROM " + tabela + " WHERE " + id_tabela + " = " + str(id_salvo))
-    db.commit()
+    cursor.execute("SELECT " + id_tabela +" FROM " + tabela)
+    data_tabela = cursor.fetchall()
+    id_salvo = data_tabela[line][0]
+
+    cursor.execute("SELECT idPessoa FROM pessoas p INNER JOIN "+ tabela +" c ON p."+ id_tabela +" = c."+ id_tabela +" WHERE c."+ id_tabela +" = " + str(id_salvo))
+    data_pessoa = cursor.fetchall()
+
+    qtd_pessoas = len(data_pessoa)
+
+    error_label = "A sala não pode ser removida pois possui "+ str(qtd_pessoas) + " pessoas cadastrada(s) nela, realoque essa(s) pessoa(s) antes de excluir a sala"
+    success_label = "Sala excluída com sucesso!"
+
+    if qtd_pessoas > 0:
+        call_alerta_padrao(error_label)
+    else:
+        call_alerta_sucesso(success_label)
+        ui.tableWidget.removeRow(line)
+        cursor.execute("DELETE FROM " + tabela + " WHERE " + id_tabela + " = " + str(id_salvo))
+        db.commit()
 
 def update(id_salvo, ui_alterar, tabela, id_tabela):
     nome = ui_alterar.lineEditNome.text()
     capacidade = ui_alterar.spinBoxCapacidade.text()
 
-    cursor = db.cursor()
-    sql = "UPDATE "+ tabela +" SET nome = %s, capacidade = %s WHERE "+ id_tabela +" = %s"
-    data = (str(nome), str(capacidade), str(id_salvo))
-    cursor.execute(sql, data)
-    db.commit()
+    erro_nome = "A sala não pode ficar sem um nome"
+    erro_capacidade = "A sala não pode ficar sem uma capacidade mínima"
+    erro_ambos = "A sala não pode ficar sem um nome e nem sem capacidade mínima"
 
-    ui_alterar.close()
+
+    if ((not nome.strip()) and (int(capacidade) == 0)):
+        call_alerta_padrao(erro_ambos)
+    elif ((not nome.strip()) and (int(capacidade) > 0)):
+        call_alerta_padrao(erro_nome)
+    elif int(capacidade) == 0:
+        call_alerta_padrao(erro_capacidade)
+    else:  
+        cursor = db.cursor()
+        sql = "UPDATE "+ tabela +" SET nome = %s, capacidade = %s WHERE "+ id_tabela +" = %s"
+        data = (str(nome), str(capacidade), str(id_salvo))
+        cursor.execute(sql, data)
+        db.commit()
+
+        ui_alterar.close()
+
+
 
 def editar_sala(ui, tabela, id_tabela, ui_alterar):
     line = ui.tableWidget.currentRow()
@@ -74,6 +113,9 @@ def editar_sala(ui, tabela, id_tabela, ui_alterar):
     sala = cursor.fetchall()
 
     ui_alterar.show()
+
+    alerta_campos = "Verifique todos os dados antes de confirmar a edição, repita os valores dos dados que você não queira mudar"
+    call_alerta_padrao(alerta_campos)
 
     ui_alterar.lblNome_disabled.setText(str(sala[0][0]))
     ui_alterar.lblCapacidade_disabled.setText(str(sala[0][1]))

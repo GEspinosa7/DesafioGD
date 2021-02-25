@@ -1,8 +1,8 @@
 from PyQt5 import uic,QtWidgets
 from pessoa import  call_cadastro_pessoa, call_lista_pessoas
 from salas import call_lista_salas, call_cadastro_sala
-from salas_cafe import  call_cadastro_sala_cafe
-from functions import call_listas
+from salas_cafe import call_cadastro_cafe
+from functions import call_listas, cadastrar_sala
 from functools import partial
 import images
 
@@ -20,6 +20,7 @@ lista_salas = uic.loadUi("sistema/screens/listaSalas.ui")
 
 ##SALAS DE CAFE
 lista_salas_cafe = uic.loadUi("sistema/screens/listaSalasCafe.ui")
+cadastro_sala_cafe = uic.loadUi("sistema/screens/cadastroSalasCafe.ui")
 sala_detalhada_cafe = uic.loadUi("sistema/screens/salaCafeDetalhada.ui")
 alterar_dados_sala_cafe = uic.loadUi("sistema/screens/alterarDadosSalaCafe.ui")
 
@@ -34,7 +35,8 @@ mainScreen.salasBtnCadastrar_2.clicked.connect(call_cadastro_sala)
 mainScreen.salasBtnConsultar_2.clicked.connect(call_lista_salas)
 
 ##SALAS DE CAFE
-mainScreen.salasCafeBtnCadastrar_2.clicked.connect(call_cadastro_sala_cafe)
+mainScreen.salasCafeBtnCadastrar_2.clicked.connect(call_cadastro_cafe)
+
 mainScreen.salasCafeBtnConsultar_2.clicked.connect(
    partial(
       call_listas, lista_salas_cafe, "cafes", "idCafe", sala_detalhada_cafe, alterar_dados_sala_cafe
@@ -44,3 +46,12 @@ mainScreen.salasCafeBtnConsultar_2.clicked.connect(
 
 mainScreen.show()
 app.exec()
+
+
+#TODO: refatorar codio de SALAS - aderir ao arquivo functions.py
+
+#TODO: nao permitir campos vazios em  PESSOAS
+
+#TODO: avisar sobre os campos na hora de editar em PESSOAS
+
+

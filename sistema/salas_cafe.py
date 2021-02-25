@@ -1,14 +1,8 @@
-from PyQt5 import uic,QtWidgets
 from functools import partial
-from functions import tratamento_sala, deletar_sala, editar_sala,  sala_detalhada
+from PyQt5 import uic,QtWidgets
+from functions import cadastrar_sala, deletar_sala, editar_sala,  sala_detalhada
 
-def cadastrar_sala_cafe():
-    nome = cadastro_salas_cafe.lineEditNome.text()
-    capacidade = cadastro_salas_cafe.spinBoxCapacidade.text()
-
-    tratamento_sala(nome, capacidade, cadastro_salas_cafe, "cafes")
-
-def call_cadastro_sala_cafe():
+def call_cadastro_cafe():
     cadastro_salas_cafe.show()
 
 app = QtWidgets.QApplication([])
@@ -19,10 +13,14 @@ lista_salas_cafe = uic.loadUi("sistema/screens/listaSalasCafe.ui")
 alterar_dados_sala_cafe = uic.loadUi("sistema/screens/alterarDadosSalaCafe.ui")
 sala_detalhada_cafe = uic.loadUi("sistema/screens/salaCafeDetalhada.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
-alerta_cadastro = uic.loadUi("sistema/screens/alertaCadastro.ui")
+alerta_padrao = uic.loadUi("sistema/screens/alertaPadrao.ui")
 
 # EVENT LISTENER
-cadastro_salas_cafe.btnCadastrar.clicked.connect(cadastrar_sala_cafe)
+
+cadastro_salas_cafe.btnCadastrar.clicked.connect(
+    partial(cadastrar_sala, cadastro_salas_cafe, "cafes")
+)
+
 lista_salas_cafe.btnDeletar.clicked.connect(
     partial(deletar_sala, lista_salas_cafe, "cafes", "idCafe", sala_detalhada_cafe)
 )
