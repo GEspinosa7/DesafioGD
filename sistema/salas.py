@@ -1,7 +1,7 @@
 from PyQt5 import uic,QtWidgets
 import mysql.connector
 from functools import partial
-from functions import tratamento_sala
+# from functions import tratamento_sala
 
 #BANCO DE DADOS
 db = mysql.connector.connect(
@@ -16,7 +16,7 @@ def cadastrar_sala():
     nome = cadastro_salas.lineEditNome.text()
     capacidade = cadastro_salas.spinBoxCapacidade.text()
 
-    tratamento_sala(nome, capacidade, cadastro_salas, "salas")
+    # tratamento_sala(nome, capacidade, cadastro_salas, "salas")
 
 def call_cadastro_sala():
     cadastro_salas.show()

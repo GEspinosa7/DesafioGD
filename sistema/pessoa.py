@@ -15,11 +15,14 @@ def close(ui):
     ui.close()
 
 def call_alerta_cadastro(label):
-    alerta_cadastro.show()
-    alerta_cadastro.lblAlerta.setText(label)
-    alerta_cadastro.btnOk.clicked.connect(partial(close, alerta_cadastro))
+    alerta_padrao.show()
+    alerta_padrao.lblAlerta.setText(label)
+    alerta_padrao.btnOk.clicked.connect(partial(close, alerta_padrao))
 
 def cadastrar_pessoa():
+
+#TODO: NAO CADASTRAR PESSOAS COM SALA CHEIA (FALTA SALA DE CAFES)
+
     nome = cadastro_pessoas.lineEditNome.text()
     sobrenome = cadastro_pessoas.lineEditSobrenome.text()
     line_sala = cadastro_pessoas.tableWidget_sala.currentRow()
@@ -180,7 +183,7 @@ cadastro_pessoas = uic.loadUi("sistema/screens/cadastroPessoas.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
 alterar_dados_pessoa = uic.loadUi("sistema/screens/alterarDadosPessoa.ui")
 alerta_sala_cheia = uic.loadUi("sistema/screens/alertaSalaCheia.ui")
-alerta_cadastro = uic.loadUi("sistema/screens/alertaCadastro.ui")
+alerta_padrao = uic.loadUi("sistema/screens/alertaPadrao.ui")
 
 # EVENT LISTENER
 cadastro_pessoas.btnCadastrar.clicked.connect(cadastrar_pessoa)
