@@ -210,10 +210,16 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
         </property>
         <property name="minimum">
-         <number>5</number>
+         <number>0</number>
         </property>
         <property name="maximum">
          <number>999</number>
+        </property>
+        <property name="singleStep">
+         <number>0</number>
+        </property>
+        <property name="value">
+         <number>0</number>
         </property>
        </widget>
       </item>
