@@ -103,6 +103,9 @@
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
+        <property name="minimum">
+         <number>5</number>
+        </property>
         <property name="maximum">
          <number>999</number>
         </property>
