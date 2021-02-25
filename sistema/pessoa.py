@@ -11,14 +11,23 @@ db = mysql.connector.connect(
     database="desafio"
 )
 
-def close():
-    alerta_sala_cheia.close()
+def close(ui):
+    ui.close()
+
+def call_alerta_cadastro(label):
+    alerta_cadastro.show()
+    alerta_cadastro.lblAlerta.setText(label)
+    alerta_cadastro.btnOk.clicked.connect(partial(close, alerta_cadastro))
 
 def cadastrar_pessoa():
     nome = cadastro_pessoas.lineEditNome.text()
     sobrenome = cadastro_pessoas.lineEditSobrenome.text()
     line_sala = cadastro_pessoas.tableWidget_sala.currentRow()
     line_sala_cafe = cadastro_pessoas.tableWidget_cafe.currentRow()
+
+    erro_nome = "A pessoa está sem nome!"
+    erro_sobrenome = "A pessoa está sem sobrenome!"
+    erro_ambos = "A pessoa está sem nome e sobrenome"
 
     cursor = db.cursor()
     
@@ -34,13 +43,20 @@ def cadastrar_pessoa():
 
     if (qtd_sala >= capacidade_sala):
        alerta_sala_cheia.show()
-
+    elif ((not nome.strip()) and (not sobrenome.strip())):
+        call_alerta_cadastro(erro_ambos)
+    elif ((not nome.strip()) and (sobrenome.strip())):
+        call_alerta_cadastro(erro_nome)
+    elif ((nome.strip()) and (not sobrenome.strip())):
+        call_alerta_cadastro(erro_sobrenome)
     else:
-        sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
-        data = (str(nome), str(sobrenome), str(id_sala), 2)
-        cursor.execute(sql,data)
-        db.commit()
-        cadastro_pessoas.close()
+        print('sucesso')
+
+        # sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
+        # data = (str(nome), str(sobrenome), str(id_sala), 2)
+        # cursor.execute(sql,data)
+        # db.commit()
+        # cadastro_pessoas.close()
 
     # cursor.execute("SELECT idCafe, capacidade FROM cafes")
     # sc_data = cursor.fetchall()
@@ -164,9 +180,10 @@ cadastro_pessoas = uic.loadUi("sistema/screens/cadastroPessoas.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
 alterar_dados_pessoa = uic.loadUi("sistema/screens/alterarDadosPessoa.ui")
 alerta_sala_cheia = uic.loadUi("sistema/screens/alertaSalaCheia.ui")
+alerta_cadastro = uic.loadUi("sistema/screens/alertaCadastro.ui")
 
 # EVENT LISTENER
 cadastro_pessoas.btnCadastrar.clicked.connect(cadastrar_pessoa)
 lista_pessoas.btnDeletar.clicked.connect(deletar_pessoa)
 lista_pessoas.btnEditar.clicked.connect(editar_pessoa)
-alerta_sala_cheia.btnOk.clicked.connect(close)
+alerta_sala_cheia.btnOk.clicked.connect(partial(close, alerta_sala_cheia))

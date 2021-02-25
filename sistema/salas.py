@@ -1,6 +1,7 @@
 from PyQt5 import uic,QtWidgets
 import mysql.connector
 from functools import partial
+from functions import tratamento_sala
 
 #BANCO DE DADOS
 db = mysql.connector.connect(
@@ -10,18 +11,12 @@ db = mysql.connector.connect(
     database="desafio"
 )
 
+
 def cadastrar_sala():
     nome = cadastro_salas.lineEditNome.text()
     capacidade = cadastro_salas.spinBoxCapacidade.text()
 
-    cursor = db.cursor()
-    sql = "INSERT INTO salas (nome, capacidade) VALUES (%s,%s)"
-    data = (str(nome), str(capacidade))
-    cursor.execute(sql,data)
-    db.commit()
-
-    cadastro_salas.close()
-
+    tratamento_sala(nome, capacidade, cadastro_salas, "salas")
 
 def call_cadastro_sala():
     cadastro_salas.show()
@@ -127,6 +122,7 @@ lista_salas = uic.loadUi("sistema/screens/listaSalas.ui")
 alterar_dados_sala = uic.loadUi("sistema/screens/alterarDadosSala.ui")
 sala_detalhada = uic.loadUi("sistema/screens/salaDetalhada.ui")
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
+
 
 # EVENT LISTENER
 cadastro_salas.btnCadastrar.clicked.connect(cadastrar_sala)
