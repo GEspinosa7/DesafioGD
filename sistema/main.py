@@ -4,7 +4,7 @@ app = QtWidgets.QApplication([])
 from pessoa import  call_cadastro_pessoa, call_lista_pessoas
 from salas import  call_cadastro_sala
 from salas_cafe import call_cadastro_cafe
-from functions import call_listas, cadastrar_sala
+from functions import call_listas
 from functools import partial
 import images
 

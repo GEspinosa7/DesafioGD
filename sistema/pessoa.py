@@ -37,7 +37,7 @@ def cadastrar_pessoa():
     qtd_cafe = len(rdata)
 
     if (qtd_sala >= capacidade_sala):
-       call_alerta_padrao("Sala com limite de pessoas atingido")
+        call_alerta_padrao("Sala com limite de pessoas atingido")
     elif (qtd_cafe >= capacidade_cafe):
         call_alerta_padrao("Sala de Café com limite de pessoas atingido")
     elif ((not nome.strip()) and (not sobrenome.strip())):
@@ -49,8 +49,8 @@ def cadastrar_pessoa():
     else:
         call_alerta_sucesso(nome + " " + sobrenome + " cadastrado com sucesso!")
 
-        sql = "INSERT INTO pessoas (nome, sobrenome, idSala, idCafe) VALUES (%s, %s, %s, %s)"
-        data = (str(nome), str(sobrenome), str(id_sala), 2)
+        sql = "INSERT INTO pessoas (idSala, nome, sobrenome , idCafe) VALUES (%s, %s, %s, %s)"
+        data = ( str(id_sala), str(nome), str(sobrenome), str(id_cafe))
         cursor.execute(sql,data)
         db.commit()
         cadastro_pessoas.close()

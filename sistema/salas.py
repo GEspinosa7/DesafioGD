@@ -1,4 +1,4 @@
-from PyQt5 import uic,QtWidgets
+from PyQt5 import uic
 from functools import partial
 from functions import cadastrar_sala, deletar_sala, editar_sala,  detalhar_sala
 
