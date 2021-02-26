@@ -1,12 +1,14 @@
 from PyQt5 import uic,QtWidgets
+app = QtWidgets.QApplication([])
+
 from pessoa import  call_cadastro_pessoa, call_lista_pessoas
-from salas import call_lista_salas, call_cadastro_sala
+from salas import  call_cadastro_sala
 from salas_cafe import call_cadastro_cafe
 from functions import call_listas, cadastrar_sala
 from functools import partial
 import images
 
-app = QtWidgets.QApplication([])
+
 
 # CARREGA SCREENS
 mainScreen = uic.loadUi("sistema/screens/main.ui")
@@ -17,10 +19,11 @@ lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
 
 ##SALAS
 lista_salas = uic.loadUi("sistema/screens/listaSalas.ui")
+sala_detalhada = uic.loadUi("sistema/screens/salaDetalhada.ui")
+alterar_dados_sala = uic.loadUi("sistema/screens/alterarDadosSala.ui")
 
 ##SALAS DE CAFE
 lista_salas_cafe = uic.loadUi("sistema/screens/listaSalasCafe.ui")
-cadastro_sala_cafe = uic.loadUi("sistema/screens/cadastroSalasCafe.ui")
 sala_detalhada_cafe = uic.loadUi("sistema/screens/salaCafeDetalhada.ui")
 alterar_dados_sala_cafe = uic.loadUi("sistema/screens/alterarDadosSalaCafe.ui")
 
@@ -32,7 +35,9 @@ mainScreen.pessoasBtnConsultar_3.clicked.connect(call_lista_pessoas)
 
 ##SALAS
 mainScreen.salasBtnCadastrar_2.clicked.connect(call_cadastro_sala)
-mainScreen.salasBtnConsultar_2.clicked.connect(call_lista_salas)
+mainScreen.salasBtnConsultar_2.clicked.connect(
+   partial(call_listas, lista_salas, "salas", "idSala", sala_detalhada, alterar_dados_sala)
+)
 
 ##SALAS DE CAFE
 mainScreen.salasCafeBtnCadastrar_2.clicked.connect(call_cadastro_cafe)
@@ -47,11 +52,4 @@ mainScreen.salasCafeBtnConsultar_2.clicked.connect(
 mainScreen.show()
 app.exec()
 
-
-#TODO: refatorar codio de SALAS - aderir ao arquivo functions.py
-
-#TODO: nao permitir campos vazios em  PESSOAS
-
-#TODO: avisar sobre os campos na hora de editar em PESSOAS
-
-
+#TODO: consertar erro sql de cadastrar pessoas
