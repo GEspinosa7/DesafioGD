@@ -1,13 +1,7 @@
 from PyQt5 import uic, QtWidgets
-import mysql.connector
+from db import db
 from functools import partial
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="CHL8xXHp5AfZC8AV",
-    database="desafio"
-)
 
 alerta_padrao = uic.loadUi("sistema/screens/alertaPadrao.ui")
 alerta_sucesso = uic.loadUi("sistema/screens/alertaSucesso.ui")
@@ -57,23 +51,28 @@ def deletar_sala(ui, tabela, id_tabela):
 
     cursor.execute("SELECT " + id_tabela +" FROM " + tabela)
     data_tabela = cursor.fetchall()
-    id_salvo = data_tabela[line][0]
 
-    cursor.execute("SELECT idPessoa FROM pessoas p INNER JOIN "+ tabela +" c ON p."+ id_tabela +" = c."+ id_tabela +" WHERE c."+ id_tabela +" = " + str(id_salvo))
-    data_pessoa = cursor.fetchall()
-
-    qtd_pessoas = len(data_pessoa)
-
-    error_label = "A sala não pode ser removida pois possui "+ str(qtd_pessoas) + " pessoas cadastrada(s) nela, realoque essa(s) pessoa(s) antes de excluir a sala"
-    success_label = "Sala excluída com sucesso!"
-
-    if qtd_pessoas > 0:
-        call_alerta_padrao(error_label)
+    if len(data_tabela) == 0:
+        call_alerta_padrao("Você apagou a última sala registrada")
     else:
-        call_alerta_sucesso(success_label)
-        ui.tableWidget.removeRow(line)
-        cursor.execute("DELETE FROM " + tabela + " WHERE " + id_tabela + " = " + str(id_salvo))
-        db.commit()
+        id_salvo = data_tabela[line][0]
+
+        cursor.execute("SELECT idPessoa FROM pessoas p INNER JOIN "+ tabela +" c ON p."+ id_tabela +" = c."+ id_tabela +" WHERE c."+ id_tabela +" = " + str(id_salvo))
+        data_pessoa = cursor.fetchall()
+
+        qtd_pessoas = len(data_pessoa)
+
+        error_label = "A sala não pode ser removida pois possui "+ str(qtd_pessoas) + " pessoas cadastrada(s) nela, realoque essa(s) pessoa(s) antes de excluir a sala"
+        success_label = "Sala excluída com sucesso!"
+
+        if qtd_pessoas > 0:
+            call_alerta_padrao(error_label)
+        else:
+            call_alerta_sucesso(success_label)
+            cursor.execute("DELETE FROM " + tabela + " WHERE " + id_tabela + " = " + str(id_salvo))
+            db.commit()
+            ui.tableWidget.removeRow(line)
+
 
 def update(id_salvo, ui_alterar, tabela, id_tabela):
     nome = ui_alterar.lineEditNome.text()
@@ -96,8 +95,8 @@ def update(id_salvo, ui_alterar, tabela, id_tabela):
         data = (str(nome), str(capacidade), str(id_salvo))
         cursor.execute(sql, data)
         db.commit()
-
         ui_alterar.close()
+        call_alerta_sucesso("Dados editados com sucesso")
 
 
 
@@ -107,23 +106,30 @@ def editar_sala(ui, tabela, id_tabela, ui_alterar):
     cursor = db.cursor()
     cursor.execute("SELECT "+ id_tabela +" FROM "+ tabela)
     rdata = cursor.fetchall()
-    id_salvo = rdata[line][0]
-    
-    cursor.execute("SELECT nome, capacidade FROM "+ tabela +" WHERE "+ id_tabela +" =" + str(id_salvo))
-    sala = cursor.fetchall()
 
-    ui_alterar.show()
+    if len(rdata) == 0:
+        call_alerta_padrao("Não existe nenhuma sala para editar")
+    else:
+        id_salvo = rdata[line][0]
+        
+        cursor.execute("SELECT nome, capacidade FROM "+ tabela +" WHERE "+ id_tabela +" =" + str(id_salvo))
+        sala = cursor.fetchall()
 
-    alerta_campos = "Verifique todos os dados antes de confirmar a edição, repita os valores dos dados que você não queira mudar"
-    call_alerta_padrao(alerta_campos)
+        ui_alterar.show()
 
-    ui_alterar.lblNome_disabled.setText(str(sala[0][0]))
-    ui_alterar.lblCapacidade_disabled.setText(str(sala[0][1]))
+        alerta_campos = "Verifique todos os dados antes de confirmar a edição, repita os valores dos dados que você não queira mudar"
+        call_alerta_padrao(alerta_campos)
 
-    ui_alterar.btnSalvarAlteracao.clicked.connect(partial(update, id_salvo, ui_alterar, tabela, id_tabela))
+        ui_alterar.lblNome_disabled.setText(str(sala[0][0]))
+        ui_alterar.lblCapacidade_disabled.setText(str(sala[0][1]))
+
+        ui_alterar.btnSalvarAlteracao.clicked.connect(partial(update, id_salvo, ui_alterar, tabela, id_tabela))
 
 def call_lista_pessoas_sala(id_salvo, tabela, id_tabela):
     lista_pessoas.show()
+
+    lista_pessoas.btnDeletar.setHidden(True)
+    lista_pessoas.btnEditar.setHidden(True)
 
     cursor = db.cursor()
     cursor.execute("SELECT * FROM pessoas p INNER JOIN "+ tabela +" c ON p."+ id_tabela +" = c."+ id_tabela +" WHERE c."+ id_tabela +" = " + str(id_salvo))
@@ -136,25 +142,30 @@ def call_lista_pessoas_sala(id_salvo, tabela, id_tabela):
         for j in range(0, 5):
             lista_pessoas.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
 
-def sala_detalhada(ui, id_tabela, tabela, ui_detalhada):
+def detalhar_sala(ui, id_tabela, tabela, ui_detalhada):
     line = ui.tableWidget.currentRow()
     cursor = db.cursor()
 
     cursor.execute("SELECT "+ id_tabela +" FROM "+ tabela)
     rdata = cursor.fetchall()
-    id_salvo = rdata[line][0]
 
-    cursor.execute("SELECT nome, capacidade FROM "+ tabela +" WHERE "+ id_tabela +" = " + str(id_salvo))
-    sala_d = cursor.fetchall()
+    if len(rdata) == 0:
+        call_alerta_padrao("Não existe nenhuma sala para detalhar dados")
+    else:
+        id_salvo = rdata[line][0]
 
-    cursor.execute("SELECT p.idPessoa FROM pessoas p INNER JOIN "+ tabela +" c ON p."+ id_tabela +" = c."+ id_tabela +" WHERE c."+ id_tabela +" = " + str(id_salvo))
-    pessoas = cursor.fetchall()
 
-    ui_detalhada.show()
-    ui_detalhada.lblNome.setText(str(sala_d[0][0]))
-    ui_detalhada.lblCapacidade.setText(str(sala_d[0][1]))
-    ui_detalhada.lblPessoasQtd.setText(str(len(pessoas)))
-    ui_detalhada.btnVerPessoas.clicked.connect(partial(call_lista_pessoas_sala, id_salvo, tabela, id_tabela))
+        cursor.execute("SELECT nome, capacidade FROM "+ tabela +" WHERE "+ id_tabela +" = " + str(id_salvo))
+        sala_d = cursor.fetchall()
+
+        cursor.execute("SELECT p.idPessoa FROM pessoas p INNER JOIN "+ tabela +" c ON p."+ id_tabela +" = c."+ id_tabela +" WHERE c."+ id_tabela +" = " + str(id_salvo))
+        pessoas = cursor.fetchall()
+
+        ui_detalhada.show()
+        ui_detalhada.lblNome.setText(str(sala_d[0][0]))
+        ui_detalhada.lblCapacidade.setText(str(sala_d[0][1]))
+        ui_detalhada.lblPessoasQtd.setText(str(len(pessoas)))
+        ui_detalhada.btnVerPessoas.clicked.connect(partial(call_lista_pessoas_sala, id_salvo, tabela, id_tabela))
 
 def call_listas(ui, tabela, id_tabela, ui_detalhada, ui_alterar):
     ui.show()
@@ -162,17 +173,27 @@ def call_listas(ui, tabela, id_tabela, ui_detalhada, ui_alterar):
     cursor = db.cursor()
     sql = "SELECT * FROM " + tabela
     cursor.execute(sql)
-    rdata = cursor.fetchall()
+    list_data = cursor.fetchall()
 
-    ui.tableWidget.setRowCount(len(rdata))
+    if len(list_data) == 0:
+        ui.btnDetalhes.setHidden(True)
+        ui.btnEditar.setHidden(True)
+        ui.btnDeletar.setHidden(True)
+    else:
+        ui.btnDetalhes.setHidden(False)
+        ui.btnEditar.setHidden(False)
+        ui.btnDeletar.setHidden(False)
+
+    ui.tableWidget.setRowCount(len(list_data))
     ui.tableWidget.setColumnCount(3)
 
-    for i in range(0, len(rdata)):
+    for i in range(0, len(list_data)):
         for j in range(0, 3):
-            ui.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(rdata[i][j])))
+            ui.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(list_data[i][j])))
+
 
     ui.btnDeletar.clicked.connect(partial(deletar_sala, ui, tabela, id_tabela))
     ui.btnEditar.clicked.connect(partial(editar_sala, ui, tabela, id_tabela, ui_alterar))
-    ui.btnDetalhes.clicked.connect(partial(sala_detalhada, ui, id_tabela, tabela, ui_detalhada))
+    ui.btnDetalhes.clicked.connect(partial(detalhar_sala, ui, id_tabela, tabela, ui_detalhada))
 
 lista_pessoas = uic.loadUi("sistema/screens/listaPessoas.ui")
