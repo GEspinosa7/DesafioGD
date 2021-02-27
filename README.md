@@ -93,8 +93,3 @@
     com a possibilidade de editar, detelhar ou excluir a pessoa.
     
    ![Captura de Tela (227)](https://user-images.githubusercontent.com/47759303/109393680-e642d580-7901-11eb-8af2-056b7cd64c28.png)
-
-    
-
-    
-Onde os usuários podem obter ajuda com seu projeto
