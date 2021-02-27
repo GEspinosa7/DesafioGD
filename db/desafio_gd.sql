@@ -24,9 +24,10 @@ DROP TABLE IF EXISTS `cafes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cafes` (
   `idCafe` int NOT NULL AUTO_INCREMENT,
-  `numero` int DEFAULT NULL,
+  `capacidade` int DEFAULT NULL,
+  `nome` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`idCafe`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +36,7 @@ CREATE TABLE `cafes` (
 
 LOCK TABLES `cafes` WRITE;
 /*!40000 ALTER TABLE `cafes` DISABLE KEYS */;
-INSERT INTO `cafes` VALUES (1,550),(2,551),(3,552);
+INSERT INTO `cafes` VALUES (100,10,'Sala de Café 330');
 /*!40000 ALTER TABLE `cafes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +58,7 @@ CREATE TABLE `pessoas` (
   KEY `FK_Pessoas_idCafe` (`idCafe`),
   CONSTRAINT `FK_Pessoas_idCafe` FOREIGN KEY (`idCafe`) REFERENCES `cafes` (`idCafe`),
   CONSTRAINT `FK_Pessoas_idSala` FOREIGN KEY (`idSala`) REFERENCES `salas` (`idSala`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +67,7 @@ CREATE TABLE `pessoas` (
 
 LOCK TABLES `pessoas` WRITE;
 /*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (5,NULL,'teste','asd',NULL),(6,NULL,'teste','sdasdasd',NULL),(7,NULL,'','',NULL),(8,NULL,'','',NULL);
+INSERT INTO `pessoas` VALUES (105,69,'Gabriel','Espinosa',100);
 /*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,10 +80,10 @@ DROP TABLE IF EXISTS `salas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `salas` (
   `idSala` int NOT NULL AUTO_INCREMENT,
-  `numero` int NOT NULL,
   `capacidade` int DEFAULT NULL,
+  `nome` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`idSala`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +92,7 @@ CREATE TABLE `salas` (
 
 LOCK TABLES `salas` WRITE;
 /*!40000 ALTER TABLE `salas` DISABLE KEYS */;
-INSERT INTO `salas` VALUES (1,445,30),(2,445,30);
+INSERT INTO `salas` VALUES (69,20,'Sala 330');
 /*!40000 ALTER TABLE `salas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-19 17:34:00
+-- Dump completed on 2021-02-27 15:11:22
