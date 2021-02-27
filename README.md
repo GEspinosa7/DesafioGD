@@ -4,9 +4,21 @@
 ## O que esse sistema faz:
   Sistema de gerenciamento afim de organizar a lotação de salas e espaços para intervalos (chamados Sala de Café) com o registro de pessoas nas mesmas.
   
+## Linguagem utilizada
+  :snake: Python 3.8.7 64bit
+  
 ## Como utilizar o sistema:
   
   ### Como executar:
+  
+  #### Vá para pasta do sistema
+ 
+   ![Captura de Tela (230)](https://user-images.githubusercontent.com/47759303/109399493-e2bf4680-7921-11eb-9291-05d7b3047c38.png)
+
+  #### execute o arquivo *main.py* com o python
+  
+   ![Captura de Tela (231)](https://user-images.githubusercontent.com/47759303/109399517-0e423100-7922-11eb-8c91-e3406c153dde.png)
+
   
   
   ### Como utilizar:
