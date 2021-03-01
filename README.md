@@ -12,6 +12,9 @@
   ### Como executar:
   
   #### Vá para pasta do sistema
+
+   Antes de mais nada , utilize a cópia salva do banco de dados da pasta db como banco de dados
+
  
    ![Captura de Tela (230)](https://user-images.githubusercontent.com/47759303/109399493-e2bf4680-7921-11eb-9291-05d7b3047c38.png)
 
