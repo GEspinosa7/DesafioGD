@@ -11,14 +11,21 @@
   
   ### Como executar:
   
+  #### Antes de mais nada , utilize a cópia salva do banco de dados da pasta db como banco de dados
+  
+    \DesafioGD\db
+   
+   Configure o arquivo *db.py* utilizando os dados do seu servidos sql
+   
+   ![Captura de Tela (233)](https://user-images.githubusercontent.com/47759303/109502886-55dad100-7a78-11eb-9974-6ac25dd5f530.png)
+  
   #### Vá para pasta do sistema
 
-   Antes de mais nada , utilize a cópia salva do banco de dados da pasta db como banco de dados
-
- 
-   ![Captura de Tela (230)](https://user-images.githubusercontent.com/47759303/109399493-e2bf4680-7921-11eb-9291-05d7b3047c38.png)
+  ![Captura de Tela (230)](https://user-images.githubusercontent.com/47759303/109399493-e2bf4680-7921-11eb-9291-05d7b3047c38.png)
+   
 
   #### execute o arquivo *main.py* com o python
+   
   
    ![Captura de Tela (231)](https://user-images.githubusercontent.com/47759303/109399517-0e423100-7922-11eb-8c91-e3406c153dde.png)
 
